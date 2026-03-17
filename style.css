@@ -976,6 +976,15 @@ span{
     padding: 4rem 7% 4rem;
   }
   
+  .projects-container {
+    padding: 0 2rem;
+  }
+  
+  .project-row {
+    gap: 2.5rem;
+    margin-bottom: 6rem;
+  }
+  
   .project-image {
     height: 300px;
     width: 450px;
@@ -986,6 +995,10 @@ span{
 @media (max-width: 991px) {
   .projects {
     padding: 3.5rem 5% 3.5rem;
+  }
+  
+  .projects .heading {
+    margin-bottom: 4rem;
   }
   
   .project-row {
@@ -1005,6 +1018,10 @@ span{
     flex: none;
     margin: 0 auto;
   }
+  
+  .project-info {
+    padding: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1013,28 +1030,60 @@ span{
   }
   
   .projects-container {
-    max-width: 500px;
+    max-width: 450px;
     margin: 0 auto;
+    padding: 0;
+  }
+  
+  .projects .heading {
+    margin-bottom: 3rem;
+  }
+  
+  .heading-sub {
+    font-size: 1.8rem;
+  }
+  
+  .heading-main {
+    font-size: 4rem;
   }
   
   .project-row {
     width: 100%;
     max-width: 450px;
-    margin: 0 auto 4.5rem auto;
-    gap: 2rem;
+    margin: 0 auto 4rem auto !important;
+    gap: 2rem !important;
+    flex-direction: column !important;
+    align-items: center;
   }
   
   .project-image {
     height: 280px;
     width: 420px;
     max-width: 420px;
-    margin: 0 auto;
+    margin: 0 auto !important;
   }
   
   .project-info {
+    width: 100%;
     max-width: 420px;
-    margin: 0 auto;
     padding: 1.5rem 1rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .project-title {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+  }
+  
+  .project-desc {
+    font-size: 1.45rem;
+    margin-bottom: 1.8rem;
+  }
+  
+  .project-tech span {
+    padding: 0.6rem 1.4rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -1043,8 +1092,26 @@ span{
     padding: 2.5rem 10% 2.5rem;
   }
   
+  .projects .heading {
+    margin-bottom: 2.5rem;
+  }
+  
+  .heading-sub {
+    font-size: 1.5rem;
+  }
+  
+  .heading-main {
+    font-size: 3.2rem;
+  }
+  
+  .projects-container {
+    max-width: 400px;
+  }
+  
   .project-row {
-    max-width: 390px;
+    max-width: 400px;
+    margin-bottom: 4rem;
+    gap: 1.8rem;
   }
   
   .project-image {
@@ -1057,6 +1124,30 @@ span{
     max-width: 390px;
     padding: 1.2rem 1rem;
   }
+  
+  .project-title {
+    font-size: 2.3rem;
+  }
+  
+  .project-desc {
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .project-tech {
+    gap: 0.6rem;
+    margin-bottom: 1.8rem;
+  }
+  
+  .project-tech span {
+    padding: 0.5rem 1.2rem;
+    font-size: 1.1rem;
+  }
+  
+  .project-btn {
+    padding: 1rem 2.2rem;
+    font-size: 1.35rem;
+  }
 }
 
 @media (max-width: 360px) {
@@ -1064,8 +1155,17 @@ span{
     padding: 2rem 12% 2rem;
   }
   
+  .heading-main {
+    font-size: 2.8rem;
+  }
+  
+  .projects-container {
+    max-width: 360px;
+  }
+  
   .project-row {
     max-width: 360px;
+    margin-bottom: 3.5rem;
   }
   
   .project-image {
@@ -1077,6 +1177,24 @@ span{
   .project-info {
     max-width: 360px;
     padding: 1rem 0.8rem;
+  }
+  
+  .project-title {
+    font-size: 2rem;
+  }
+  
+  .project-desc {
+    font-size: 1.25rem;
+  }
+  
+  .project-tech span {
+    padding: 0.45rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .project-btn {
+    padding: 0.9rem 2rem;
+    font-size: 1.25rem;
   }
 }
 
