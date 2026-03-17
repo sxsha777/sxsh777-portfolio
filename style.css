@@ -1032,13 +1032,14 @@ span{
   }
 }
 
+/* FIXED MOBILE MEDIA QUERIES */
 @media (max-width: 768px) {
   .projects {
-    padding: 3rem 8% 3rem;
+    padding: 3rem 5% 3rem;
   }
   
   .projects-container {
-    max-width: 450px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0;
   }
@@ -1057,7 +1058,7 @@ span{
   
   .project-row {
     width: 100%;
-    max-width: 380px;
+    max-width: 400px;
     margin: 0 auto 4rem auto !important;
     gap: 2rem !important;
     flex-direction: column !important;
@@ -1065,15 +1066,16 @@ span{
   }
   
   .project-image {
-    height: 250px !important;
-    width: 350px !important;
-    max-width: 350px !important;
+    height: 280px !important;
+    width: 100% !important;
+    max-width: 400px !important;
     margin: 0 auto !important;
+    flex: none !important;
   }
   
   .project-info {
     width: 100%;
-    max-width: 350px;
+    max-width: 400px;
     padding: 1.5rem 1rem;
     margin: 0 auto;
     text-align: center;
@@ -1097,27 +1099,27 @@ span{
 
 @media (max-width: 480px) {
   .projects {
-    padding: 2.5rem 10% 2.5rem;
+    padding: 2.5rem 5% 2.5rem;
   }
   
   .projects-container {
-    max-width: 350px;
+    max-width: 100%;
   }
   
   .project-row {
-    max-width: 350px;
-    margin-bottom: 4rem;
+    max-width: 100%;
+    margin-bottom: 3.5rem;
     gap: 1.8rem;
   }
   
   .project-image {
-    height: 220px !important;
-    width: 320px !important;
-    max-width: 320px !important;
+    height: 250px !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   
   .project-info {
-    max-width: 320px;
+    max-width: 100%;
     padding: 1.2rem 1rem;
   }
   
@@ -1142,26 +1144,26 @@ span{
 
 @media (max-width: 360px) {
   .projects {
-    padding: 2rem 12% 2rem;
+    padding: 2rem 5% 2rem;
   }
   
   .projects-container {
-    max-width: 320px;
+    max-width: 100%;
   }
   
   .project-row {
-    max-width: 320px;
-    margin-bottom: 3.5rem;
+    max-width: 100%;
+    margin-bottom: 3rem;
   }
   
   .project-image {
-    height: 200px !important;
-    width: 300px !important;
-    max-width: 300px !important;
+    height: 220px !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   
   .project-info {
-    max-width: 300px;
+    max-width: 100%;
     padding: 1rem 0.8rem;
   }
   
