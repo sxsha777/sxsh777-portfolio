@@ -258,19 +258,18 @@
       </div>
 
       <div class="contact-form" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="300">
-        <form action="#">
+        <form id="contactForm">
           <div class="input-group">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
+            <input type="text" id="user_name" placeholder="Your Name" required>
+            <input type="email" id="user_email" placeholder="Your Email" required>
           </div>
           <div class="input-group">
-            <input type="text" placeholder="Subject">
+            <input type="text" id="user_subject" placeholder="Subject">
           </div>
-          <textarea placeholder="Your Message" rows="6" required></textarea>
-          <button type="submit" class="btn-submit">Send Message</button>
+          <textarea id="message" placeholder="Your Message" rows="6" required></textarea>
+          <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
         </form>
       </div>
-    </div>
   </section>
 
   <footer class="footer">
@@ -284,39 +283,122 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({offset:0});
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+AOS.init({offset: 0});
 
-    let sections = document.querySelectorAll('section');
-    let navLinks = document.querySelectorAll('header nav a');
+// Initialize EmailJS
+emailjs.init("CBB7s0JeSouSvP9Kv");
 
-    window.onscroll = () => {
-      let header = document.querySelector('header');
-      header.classList.toggle('sticky', window.scrollY > 100);
+let sections = document.querySelectorAll('section');
+let navLinks = document.querySelectorAll('header nav a');
 
-      sections.forEach(sec => {
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 150;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id');
+window.onscroll = () => {
+  let header = document.querySelector('header');
+  header.classList.toggle('sticky', window.scrollY > 100);
 
-        if(top >= offset && top < offset + height) {
-          navLinks.forEach(links => {
-            links.classList.remove('active');
-            document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
-          });
-        };
+  sections.forEach(sec => {
+    let top = window.scrollY;
+    let offset = sec.offsetTop - 150;
+    let height = sec.offsetHeight;
+    let id = sec.getAttribute('id');
+
+    if(top >= offset && top < offset + height) {
+      navLinks.forEach(links => {
+        links.classList.remove('active');
+        document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
       });
-    };
+    }
+  });
+};
 
-  // ========== SCREENSHOT MODE TOGGLE ==========
-  function enableScreenshotMode() {
-    document.body.classList.add('screenshot-mode');
-  }
+function showPopup(type, title, message) {
+  const existing = document.querySelector('.popup-notification');
+  if (existing) existing.remove();
+  
+  const popup = document.createElement('div');
+  popup.className = `popup-notification ${type}`;
+  popup.innerHTML = `
+    <button class="close-btn" onclick="this.parentElement.remove()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="icon">
+      ${type === 'success' ? '<i class="fa-solid fa-check-circle"></i>' : '<i class="fa-solid fa-exclamation-triangle"></i>'}
+    </div>
+    <div class="title">${title}</div>
+    <div class="message">${message}</div>
+  `;
+  
+  document.body.appendChild(popup);
+  
+  setTimeout(() => popup.classList.add('show'), 100);
+  setTimeout(() => {
+    if (popup.parentNode) {
+      popup.style.right = '-400px';
+      setTimeout(() => popup.remove(), 500);
+    }
+  }, 5000);
+}
 
-  // Enable for 10 seconds then disable
-  setTimeout(enableScreenshotMode, 1000);
-  </script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const btn = document.getElementById('submitBtn');
+  const originalText = btn.textContent;
+  
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  
+  const data = {
+    user_name: document.getElementById('user_name').value,
+    user_email: document.getElementById('user_email').value,
+    user_subject: document.getElementById('user_subject').value || 'No subject',
+    message: document.getElementById('message').value
+  };
+  
+  emailjs.send('service_asjlnl8', 'template_mhuzt7k', data)
+    .then(() => {
+      // CREATE POPUP
+      const popup = document.createElement('div');
+      popup.className = 'popup-notification success';
+      popup.innerHTML = `
+        <button class="close" onclick="this.parentElement.remove()">×</button>
+        <strong>Success!</strong><br>
+        Message sent to Sai!
+      `;
+      document.body.appendChild(popup);
+      
+      // Animate in
+      setTimeout(() => popup.classList.add('show'), 70);
+      
+      // Auto remove
+      setTimeout(() => popup.remove(), 4000);
+      
+      // Reset form
+      this.reset();
+    })
+    .catch(() => {
+      const popup = document.createElement('div');
+      popup.className = 'popup-notification error';
+      popup.innerHTML = `
+        <button class="close" onclick="this.parentElement.remove()">×</button>
+        <i class="fa-solid fa-xmark-circle"></i>
+        <strong>Error!</strong><br>
+        Please try again.
+      `;
+      document.body.appendChild(popup);
+      
+      setTimeout(() => popup.classList.add('show'), 50);
+      setTimeout(() => popup.remove(), 4000);
+    })
+    .finally(() => {
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }, 1500);
+    });
+  });
+</script>
 </body>
 </html>
